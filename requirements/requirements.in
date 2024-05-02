@@ -1,0 +1,10 @@
+requests==2.31.0
+llama-index
+llama-index-llms-ollama
+llama-index-llms-openai
+llama-index-vector-stores-chroma
+llama-index-storage-index-store-redis
+llama-index-embeddings-huggingface
+llama-parse
+pydantic
+pydantic-settings
