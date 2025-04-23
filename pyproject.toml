@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling", "hatch-requirements-txt"]
+build-backend = "hatchling.build"
+
+[project]
+name = "llaprag"
+dynamic = ["version", "dependencies"]
+description = "my description"
+readme = "README.md"
+requires-python = ">= 3.10"
+license = "MIT"
+keywords = []
+authors = [{ name = "BorjaIP", email = "borja.irpe@gmail.com" }]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+
+[project.urls]
+Documentation = "https://github.com/BorjaIP/llaprag#readme"
+Issues = "https://github.com/BorjaIP/llaprag/issues"
+Source = "https://github.com/BorjaIP/llaprag"
+
+[tool.hatch.version]
+path = 'llaprag/__init__.py'
+
+[tool.hatch.envs.default]
+python = "3.11"
+installer = "uv"
+path = "./.venv"
+dependencies = ["uv", "hatch-requirements-txt"]
+
+[tool.hatch.metadata.hooks.requirements_txt]
+files = ["requirements/requirements.txt"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["llaprag"]

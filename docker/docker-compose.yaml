@@ -1,0 +1,48 @@
+version: '3.9'
+
+networks:
+  net:
+    driver: bridge
+
+services:
+  ollama:
+    image: ollama/ollama:0.1.32
+    container_name: ollama
+    ports:
+      - 11434:11434
+    networks:
+      - net
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    
+  chromadb:
+    image: chromadb/chroma:0.5.0
+    container_name: chromadb
+    environment:
+      - IS_PERSISTENT=TRUE
+      - PERSIST_DIRECTORY=/chroma/chroma # this is the default path, change it as needed
+      - ANONYMIZED_TELEMETRY=${ANONYMIZED_TELEMETRY:-TRUE}
+    ports:
+      - 8000:8000
+    networks:
+      - net
+    volumes:
+      - ./chromadb:/chroma/chroma
+
+  redis:
+    image: redis:6.2-alpine
+    container_name: redis
+    ports:
+      - 6379:6379
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes: 
+      - redisdb:/data
+  
+volumes:
+  redisdb:
+    driver: local
