@@ -3,7 +3,7 @@ import time
 
 import requests
 
-api_key = "llx-CwHqcHgcyTqqZampLsVILiG8gIRMlcMEGrWj8L0B4sAI0XsF"
+api_key = ""
 
 headers = {"Authorization": f"Bearer {api_key}"}
 file_path = "./attention.pdf"
